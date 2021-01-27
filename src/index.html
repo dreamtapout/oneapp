@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Single Page App </title>
+
+    <style>
+        body {
+          background-color: rgb(88, 130, 167);
+        }
+        .center {
+             text-align: center;
+             border: 3px solid green;
+                }
+
+        </style>
+</head>
+
+
+<body>
+    <title> Welcome to the One Page App </title>
+
+
+        <!-- Below is the function to create the button in Vanilla JavaScript-->
+        <script>
+            function myFunction() {
+                var h = document.createElement("p");
+                var t = document.createTextNode("Hello I Am Here");
+                h.appendChild(t);
+                document.body.appendChild(h);
+            }
+        </script>
+        
+        <!-- Below is the Header and Paragrah HTML code-->
+        <div class="center">
+            <h1>One Page App</h1>
+            <p id="demo">Welcome To One App</p>
+            <button name="oneClick" onclick="myFunction()">Pick Me Please!</button> 
+         </div>
+
+    
+    
+</body>
+</html>
