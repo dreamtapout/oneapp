@@ -5,9 +5,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:15.7.0
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+       
     steps:
       
       - run: 
