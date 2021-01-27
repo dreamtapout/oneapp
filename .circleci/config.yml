@@ -1,33 +1,14 @@
-version: 2.1
+orbs: # declare what orbs we are going to use
+  node: circleci/node@2.0.2 # the node orb provides common node-related configuration 
 
-# Define the jobs we want to run for this project
-jobs:
-  build:
-    docker:
-      - image: circleci/node:15.7.0
-       
-    steps:
-      
-      - run: 
-          name: update-npm
-          command: sudo npm-install -g npm@latest
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json"}}  
+version: 2.1 # using 2.1 provides access to orbs and other features
 
-      - run: 
-          name: install-npm-wee
-          command: npm install
-
-      - save_cache:
-            key: dependency-cache-{{ checksum "package.json"}}
-            paths:
-              - ./node_modules
-
-      - run: 
-          name: test 
-          command: npm test
-      - store_test_results: 
-          path: test-results.xml
-                
-
-
+workflows:
+  matrix-tests:
+    jobs:
+      - node/test:
+          version: 13.11.0
+      - node/test:
+          version: 12.16.0
+      - node/test:
+          version: 10.19.0
