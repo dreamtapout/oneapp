@@ -10,7 +10,7 @@ defaults: &defaults
 
 #A job is a series of steps that are used 
 jobs: 
-  build:
+  build_and_test:
     <<: *defaults 
     steps:  #steps are a set of commands that are ran when running a job
       - checkout 
@@ -29,12 +29,9 @@ jobs:
 workflows:
   oneapp-pkg:
     jobs:
-      - build 
+      - build_and_test 
       - heroku/deploy-via-git: 
-          pre-steps:
-            - run: export HEROKU_API_KEY=$HEROKU_API_KEY
-            - run: export HEROKU_APP_NAME=$HEROKU_APP_NAME
-            - run: echo $HEROKU_API_KEY
+          api-key: $HEROKU_API_KEY
+          app-name: $HEROKU_APP_NAME
           requires:
-            - build
-
+            - build_and_test
