@@ -42,19 +42,6 @@ jobs:
           #  npm login --registry=https://registry.npmjs.org/ --scope=dorimw
            # npm publish --access private
             
-    #Using an Heruko Orb to Deploy the App
-orbs:
-  heroku: circleci/heroku
-version: 2.1
-workflows:
-  heroku_deploy:
-    jobs:
-      - heroku/deploy-via-git:
-          post-steps:
-            - run: your-database-migration-command
-          pre-steps:
-            - run: command-that-run-before-deploying
-  
 
 workflows:
   version: 2
