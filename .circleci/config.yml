@@ -1,6 +1,7 @@
 version: 2
 
 defaults: &defaults 
+  # working_directory: /tmp/
   docker:
     - image: circleci/node
 
@@ -9,12 +10,16 @@ jobs:
     <<: *defaults 
     steps:  
       - checkout 
-      - run: 
-          name: Application Build 
-          command: npm install 
+      # - run: 
+      #     name: Application Build 
+      #     command: npm install 
+      # - run:
+      #     name: Application test  
+      #     command: npm test 
+    
       - run:
-          name: Application test  
-          command: npm test 
+         name: Test Location
+         command: "ls && pwd"
 
   publish:
     <<: *defaults
@@ -25,7 +30,7 @@ jobs:
           command: npm set registry https://registry.npmjs.org/
       - run:
           name: Authenticate with Registry
-          command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43"
+          command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/oneapp-pkg/.npmrc
       - run:
           name: Publish Package to NPM
           command: npm publish
@@ -36,6 +41,6 @@ workflows:
   oneapp-pkg:
     jobs:
       - test 
-      - publish:
-           requires:
-             - test
+      # - publish:
+      #      requires:
+      #        - test
