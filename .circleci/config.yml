@@ -2,6 +2,9 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.2.4
+  environment:
+    HEROKU_API_KEY: HEROKU_API_KEY
+    HEROKU_APP_NAME: HEROKU_APP_NAME
 
 defaults: &defaults 
   working_directory: /home/circleci/project
@@ -18,27 +21,26 @@ jobs:
     
     steps:  #steps are a set of commands that are ran when running a job
       - checkout 
-      # - run: 
-      #     name: Build OneApp App 
-      #     command: npm install 
-      # - run:
-      #     name: Test OneApp App  
-      #     command: npm test 
+      - run: 
+          name: Build OneApp App 
+          command: npm install 
+      - run:
+          name: Test OneApp App  
+          command: npm test 
       
-      # - persist_to_workspace:
-      #     root: /home/circleci/project
-      #     paths: .
-      - run: echo "Do some stuff with ${CIRCLE_PROJECT_USERNAME}..."
-      - run: echo "Do some stuff with CIRCLE_PROJECT_USERNAME..."
-      - run: echo "Do some stuff with $CIRCLE_PROJECT_USERNAME..."
-     # - heroku/deploy-via-git
+      - persist_to_workspace:
+          root: /home/circleci/project
+          paths: .
+      # - run: echo "Do some stuff with ${CIRCLE_PROJECT_USERNAME}..."
+      # - run: echo "Do some stuff with CIRCLE_PROJECT_USERNAME..."
+      # - run: echo "Do some stuff with $CIRCLE_PROJECT_USERNAME..."
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
   oneapp-pkg:
     jobs:
       - build 
-      # - pkg_deploy: 
-          # requires:
-          #   - build
+      - heroku/deploy-via-git: 
+          requires:
+            - build
 
