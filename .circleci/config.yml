@@ -19,6 +19,19 @@ jobs:
           name: Application test  
           command: npm test 
 
+  publish: 
+
+    steps:
+      - checkout
+      - run:
+          name: Publish to NPM
+          command: | 
+            npm set //registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43
+            npm publish
+
+
+            
+
 workflows:
   version: 2
   test-deploy:
