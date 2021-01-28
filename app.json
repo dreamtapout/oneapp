@@ -3,6 +3,6 @@
   "description": "A barebones Node.js app using Express 4",
   "image": "circleci/node",
   "scripts": {
-    "postdeploy": "npm install"
+    "postdeploy": "npm install serve"
   }
 }
