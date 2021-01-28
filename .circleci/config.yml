@@ -5,31 +5,29 @@ orbs:
 
 defaults: &defaults 
   working_directory: /home/circleci/project
-  docker:
-    - image: circleci/node
+  environment:
+    HEROKU_API_KEY: $HEROKU_API_KEY
+    HEROKU_APP_NAME: $HEROKU_APP_NAME
 
 #A job is a series of steps that are used 
 jobs: 
-  build_and_test:
+  build:
     <<: *defaults 
+    docker:
+      - image: circleci/node
+    
     steps:  #steps are a set of commands that are ran when running a job
       - checkout 
-      - run: 
-          name: Build OneApp App 
-          command: npm install 
-      - run:
-          name: Test OneApp App  
-          command: npm test 
+      # - run: 
+      #     name: Build OneApp App 
+      #     command: npm install 
+      # - run:
+      #     name: Test OneApp App  
+      #     command: npm test 
       
-      - persist_to_workspace:
-          root: /home/circleci/project
-          paths: .
-  pkg_deploy:
-    steps:
-      machine: true
-      - heroku/set-env-var:
-          HEROKU_API_KEY: $HEROKU_API_KEY
-          HEROKU_APP_NAME: $HEROKU_APP_NAME
+      # - persist_to_workspace:
+      #     root: /home/circleci/project
+      #     paths: .
       - run: echo "Do some stuff with $HEROKU_API_KEY..."
       - heroku/deploy-via-git
 
@@ -37,8 +35,8 @@ jobs:
 workflows:
   oneapp-pkg:
     jobs:
-      - build_and_test 
-      - pkg_deploy: 
-          requires:
-            - build_and_test
+      - build 
+      # - pkg_deploy: 
+          # requires:
+          #   - build
 
