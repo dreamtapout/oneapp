@@ -6,8 +6,8 @@ orbs:
 defaults: &defaults 
   working_directory: /home/circleci/project
   environment:
-    HEROKU_API_KEY: $HEROKU_API_KEY
-    HEROKU_APP_NAME: $HEROKU_APP_NAME
+    HEROKU_API_KEY: HEROKU_API_KEY
+    HEROKU_APP_NAME: HEROKU_APP_NAME
 
 #A job is a series of steps that are used 
 jobs: 
