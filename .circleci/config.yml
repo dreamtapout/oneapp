@@ -32,8 +32,15 @@ workflows:
       - build 
       - heroku/deploy-via-git: 
           pre-steps:
+<<<<<<< HEAD
             - run: export HEROKU_API_KEY=$HEROKU_API_KEY
             - run: export HEROKU_APP_NAME=$HEROKU_APP_NAME
             - run: echo $HEROKU_API_KEY
           requires:
             - build
+=======
+            - run: export HEROKU_API_KEY=${HEROKU_API_KEY}
+            - run: export HEROKU_APP_NAME=${HEROKU_APP_NAME}
+            - run: echo $HEROKU_API_KEY
+
+>>>>>>> 0ceaa8bb88b9c22df2f7e97bc0621500064e1edc
