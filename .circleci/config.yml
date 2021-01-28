@@ -14,3 +14,9 @@ jobs:
       - run: 
           name: Application Build 
           command: npm install 
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test  
