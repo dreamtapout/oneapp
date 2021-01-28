@@ -37,7 +37,7 @@ workflows:
   oneapp-pkg:
     jobs:
       - build 
-      # - heroku/deploy-via-git: 
-      #     requires:
-      #       - build
+      - deploy:
+          requires:
+            - build
 
