@@ -19,29 +19,7 @@ jobs:
       
       - persist_to_workspace:
           root: /home/circleci/project
-          paths: .
-
-  #publish:
-    #<<: *defaults
-    #steps:
-      #- attach_workspace:
-      #    at: /home/circleci/project
-      # - run:
-      #     name: Set Registry URL
-      #     command: | 
-      #       npm set registry https://registry.npmjs.org/
-      #       npm set scope dorimw
-
-      # - run:
-      #     name: Authenticate with Registry
-      #     command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
-      #- run:
-       #   name: Publish Package to NPM
-        #  command: |
-         #   echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
-          #  npm login --registry=https://registry.npmjs.org/ --scope=dorimw
-           # npm publish --access private
-            
+          paths: .        
 
 workflows:
   version: 2
