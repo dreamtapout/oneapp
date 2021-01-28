@@ -30,7 +30,7 @@ jobs:
           name: Set Registry URL
           command: | 
             npm set registry https://registry.npmjs.org/
-            npm init --scope=@dorimw
+            npm set scope dorimw
 
       - run:
           name: Authenticate with Registry
