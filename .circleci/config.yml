@@ -1,13 +1,9 @@
-version: 2.1
-
-orbs:
-  heroku: circleci/heroku@1.2.4
-  environment:
-    HEROKU_API_KEY: HEROKU_API_KEY
-    HEROKU_APP_NAME: HEROKU_APP_NAME
+version: 2.0
 
 defaults: &defaults 
   working_directory: /home/circleci/project
+  docker:
+    - image: circleci/node
   environment:
     HEROKU_API_KEY: HEROKU_API_KEY
     HEROKU_APP_NAME: HEROKU_APP_NAME
@@ -15,10 +11,7 @@ defaults: &defaults
 #A job is a series of steps that are used 
 jobs: 
   build:
-    <<: *defaults 
-    docker:
-      - image: circleci/node
-    
+    <<: *defaults     
     steps:  #steps are a set of commands that are ran when running a job
       - checkout 
       - run: 
@@ -31,10 +24,13 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci/project
           paths: .
-      # - run: echo "Do some stuff with ${CIRCLE_PROJECT_USERNAME}..."
-      # - run: echo "Do some stuff with CIRCLE_PROJECT_USERNAME..."
-      # - run: echo "Do some stuff with $CIRCLE_PROJECT_USERNAME..."
-      - heroku/deploy-via-git
+
+  deploy:
+    <<: *defaults   
+    steps:
+      - run:
+          name: Setup Heroku
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
