@@ -34,13 +34,14 @@ jobs:
       # - run: echo "Do some stuff with ${CIRCLE_PROJECT_USERNAME}..."
       # - run: echo "Do some stuff with CIRCLE_PROJECT_USERNAME..."
       # - run: echo "Do some stuff with $CIRCLE_PROJECT_USERNAME..."
+      - heroku/deploy-via-git
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
   oneapp-pkg:
     jobs:
       - build 
-      - heroku/deploy-via-git: 
-          requires:
-            - build
+      # - heroku/deploy-via-git: 
+      #     requires:
+      #       - build
 
