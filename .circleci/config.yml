@@ -21,11 +21,11 @@ jobs:
           root: /home/circleci/project
           paths: .
 
-  publish:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /home/circleci/project
+  #publish:
+    #<<: *defaults
+    #steps:
+      #- attach_workspace:
+      #    at: /home/circleci/project
       # - run:
       #     name: Set Registry URL
       #     command: | 
@@ -35,13 +35,26 @@ jobs:
       # - run:
       #     name: Authenticate with Registry
       #     command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
-      - run:
-          name: Publish Package to NPM
-          command: |
-            echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
-            npm login --registry=https://registry.npmjs.org/ --scope=dorimw
-            npm publish --access private
+      #- run:
+       #   name: Publish Package to NPM
+        #  command: |
+         #   echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
+          #  npm login --registry=https://registry.npmjs.org/ --scope=dorimw
+           # npm publish --access private
             
+    #Using an Heruko Orb to Deploy the App
+orbs:
+  heroku: circleci/heroku
+version: 2.1
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git:
+          post-steps:
+            - run: your-database-migration-command
+          pre-steps:
+            - run: command-that-run-before-deploying
+  
 
 workflows:
   version: 2
@@ -51,3 +64,4 @@ workflows:
       - publish:
            requires:
              - test
+

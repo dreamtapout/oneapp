@@ -1,5 +1,5 @@
 {
-  "name": "one-app-testing",
+  "name": "dorimw-o",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,18 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "dorimw",
   "license": "ISC",
   "dependencies": {
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "node_modules/regenerator-runtime"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@testing-library/dom": "^7.2.1",
-    "@testing-library/jest-dom": "^5.5.0",
-    "babel-jest": "^25.3.0",
-    "jest": "^25.3.0",
-    "serve": "^11.3.0"
+    "@babel/core": "node_modules/@babel/core",
+    "@babel/preset-env": "node_modules/@babel/preset-env",
+    "@testing-library/dom": "node_modules/",
+    "@testing-library/jest-dom": "node_modules/",
+    "babel-jest": "node_modules/babel-jest",
+    "jest": "node_modules/jest",
+    "serve": "node_modules/serve"
   }
 }
