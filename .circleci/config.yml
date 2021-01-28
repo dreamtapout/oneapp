@@ -30,16 +30,14 @@ jobs:
           HEROKU_API_KEY: $HEROKU_API_KEY
           HEROKU_APP_NAME: $HEROKU_APP_NAME
       - run: echo "Do some stuff with $HEROKU_API_KEY..."
-      - heroku/deploy-via-git:
+      - heroku/deploy-via-git
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
   oneapp-pkg:
     jobs:
       - build_and_test 
-      - deploy: 
-          api-key: HEROKU_API_KEY
-          app-name: dorimw-oneapp
+      - pkg_deploy: 
           requires:
             - build_and_test
 
