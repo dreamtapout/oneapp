@@ -31,7 +31,7 @@ workflows:
     jobs:
       - build_and_test 
       - heroku/deploy-via-git: 
-          api-key: HEROKU_API_KEY
-          app-name: HEROKU_APP_NAME
+          api-key: c595c965-45b7-4529-8450-9e0abb2f0046
+          app-name: dorimw-oneapp
           requires:
             - build_and_test
