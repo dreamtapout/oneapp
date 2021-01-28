@@ -38,4 +38,10 @@ workflows:
       - heroku/deploy-via-git:
           requires:
             - build
-
+          parameters:
+            api-key:
+                default: $HEROKU_API_KEY
+                description: The name of the environment variable containing your Heroku API Key.
+            app-name:
+                default: $HEROKU_APP_NAME
+                description: The name of your Heroku App. For backwards compatibility the literal value `$HEROKU_APP_NAME` is the default, so you can easily use this command by setting an environment variable called HEROKU_APP_NAME
