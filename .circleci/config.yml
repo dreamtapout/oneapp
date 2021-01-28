@@ -7,7 +7,7 @@ defaults: &defaults
   working_directory: /home/circleci/project
   environment:
     HEROKU_API_KEY: HEROKU_API_KEY
-    HEROKU_APP_NAME: HEROKU_APP_NAME
+    HEROKU_APP_NAME: $HEROKU_APP_NAME
 
 #A job is a series of steps that are used 
 jobs: 
@@ -28,8 +28,10 @@ jobs:
       # - persist_to_workspace:
       #     root: /home/circleci/project
       #     paths: .
-      - run: echo "Do some stuff with $HEROKU_API_KEY..."
-      - heroku/deploy-via-git
+      - run: echo "Do some stuff with ${HEROKU_API_KEY}..."
+      - run: echo "Do some stuff with ${HEROKU_APP_NAME}..."
+      - run: echo "Do some stuff with HEROKU_APP_NAME..."
+     # - heroku/deploy-via-git
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
