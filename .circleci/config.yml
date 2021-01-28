@@ -36,7 +36,7 @@ jobs:
 
 #Workflow are the rules used to define a set of jobs.           
 workflows:
-  oneapp-pkg:
+  oneapp-demo:
     jobs:
       - build 
       - deploy:

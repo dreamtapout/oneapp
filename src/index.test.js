@@ -38,7 +38,7 @@ it('renders a Button element', () => {
      const button = getByText(container, 'Pick Me Please!')
 
     fireEvent.click(button)
-    let clickedResults = container.querySelectorAll('p')
+    let clickedResults = container.querySelectorAll('p') //query select all select everything from the query.One the response and the other is the title
     expect(clickedResults[1]).toMatchObject(/Hello I Am Here/);
     
   })
