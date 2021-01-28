@@ -26,7 +26,7 @@ workflows:
   oneapp-pkg:
     jobs:
       - test 
-      - publish:
-           requires:
-             - test
+      #- publish:
+           #requires:
+             #- test
 
