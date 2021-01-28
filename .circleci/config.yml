@@ -28,7 +28,10 @@ jobs:
           at: /home/circleci/project
       - run:
           name: Set Registry URL
-          command: npm set registry https://registry.npmjs.org/
+          command: | 
+            npm set registry https://registry.npmjs.org/
+            npm init --scope=@dorimw
+
       - run:
           name: Authenticate with Registry
           command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
