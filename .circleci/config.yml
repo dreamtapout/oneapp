@@ -7,10 +7,10 @@ defaults: &defaults
 
   jobs: 
     test:
-        <<: *defaults 
-        steps:  
-          - checkout 
+      <<: *defaults 
+      steps:  
+        - checkout 
 
-          - run: 
-              name: Application Build 
-              command: npm install 
+        - run: 
+            name: Application Build 
+            command: npm install 
