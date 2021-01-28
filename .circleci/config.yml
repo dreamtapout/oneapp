@@ -35,3 +35,5 @@ workflows:
             - run: export HEROKU_API_KEY=$HEROKU_API_KEY
             - run: export HEROKU_APP_NAME=$HEROKU_APP_NAME
             - run: echo $HEROKU_API_KEY
+          requires:
+            - build
