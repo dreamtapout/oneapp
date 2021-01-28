@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults 
-  # working_directory: /tmp/
+  working_directory: /home/circleci/project
   docker:
     - image: circleci/node
 
@@ -10,21 +10,22 @@ jobs:
     <<: *defaults 
     steps:  
       - checkout 
-      # - run: 
-      #     name: Application Build 
-      #     command: npm install 
-      # - run:
-      #     name: Application test  
-      #     command: npm test 
-    
+      - run: 
+          name: Application Build 
+          command: npm install 
       - run:
-         name: Test Location
-         command: "ls && pwd"
+          name: Application test  
+          command: npm test 
+      
+      - persist_to_workspace:
+          root: /home/circleci/project
+          paths: .
 
   publish:
     <<: *defaults
     steps:
-      - checkout
+      - attach_workspace:
+          at: /home/circleci/project
       - run:
           name: Set Registry URL
           command: npm set registry https://registry.npmjs.org/
@@ -41,6 +42,6 @@ workflows:
   oneapp-pkg:
     jobs:
       - test 
-      # - publish:
-      #      requires:
-      #        - test
+      - publish:
+           requires:
+             - test
