@@ -24,14 +24,22 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci/project
           paths: .
-              
+  pkg_deploy:
+    steps:
+      - env/set-env-var:
+          HEROKU_API_KEY: $HEROKU_API_KEY
+          HEROKU_APP_NAME: $HEROKU_APP_NAME
+      - run: echo "Do some stuff with $HEROKU_API_KEY..."
+      - heroku/deploy-via-git:
+
 #Workflow are the rules used to define a set of jobs.           
 workflows:
   oneapp-pkg:
     jobs:
       - build_and_test 
-      - heroku/deploy-via-git: 
-          api-key: c595c965-45b7-4529-8450-9e0abb2f0046
+      - deploy: 
+          api-key: HEROKU_API_KEY
           app-name: dorimw-oneapp
           requires:
             - build_and_test
+
