@@ -26,7 +26,8 @@ jobs:
           paths: .
   pkg_deploy:
     steps:
-      - env/set-env-var:
+      machine: true
+      - heroku/set-env-var:
           HEROKU_API_KEY: $HEROKU_API_KEY
           HEROKU_APP_NAME: $HEROKU_APP_NAME
       - run: echo "Do some stuff with $HEROKU_API_KEY..."
