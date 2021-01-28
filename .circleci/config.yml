@@ -31,7 +31,7 @@ jobs:
           command: npm set registry https://registry.npmjs.org/
       - run:
           name: Authenticate with Registry
-          command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/oneapp-pkg/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=9f2c0353-050a-46d4-b138-bd546bd14a43" > ~/.npmrc
       - run:
           name: Publish Package to NPM
           command: npm publish
