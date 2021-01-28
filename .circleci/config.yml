@@ -2,6 +2,9 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.2.4
+  environment: 
+    HEROKU_APP_NAME: $HEROKU_APP_NAME
+    HEROKU_API_KEY: $HEROKU_API_KEY
 
 defaults: &defaults 
   working_directory: /home/circleci/project
@@ -33,9 +36,6 @@ workflows:
     jobs:
       - build 
       - heroku/deploy-via-git:
-          environment: 
-            HEROKU_APP_NAME: $HEROKU_APP_NAME
-            HEROKU_API_KEY: $HEROKU_API_KEY
           requires:
             - build
 
